@@ -1,11 +1,11 @@
 const std = @import("std");
 const assert = std.debug.assert;
 
-const MovementType = enum { Foot, Mech, Tire, Tread, Ship, Lander, Air, Pipe };
+pub const MovementType = enum { Foot, Mech, Tire, Tread, Ship, Lander, Air, Pipe };
 
-const Weather = enum { Clear, Rain, Snow, Sandstorm };
+pub const Weather = enum { Clear, Rain, Snow, Sandstorm };
 
-const Terrain = enum {
+pub const Terrain = enum {
     Road,
     Plain,
     Wood,
@@ -181,57 +181,4 @@ pub fn getMovementCost(movementType: MovementType, terrain: Terrain) u8 {
 
 pub fn isLegalMovement(movementType: MovementType, terrain: Terrain) bool {
     return !illegalMovementTable[movementType][terrain];
-}
-
-pub const Map = struct {
-    width: u8,
-    height: u8,
-    tiles: []Terrain,
-
-    pub fn init(width: u8, height: u8, tiles: []Terrain) Map {
-        assert(tiles.len == width * height);
-        return Map{ .width = width, .height = height, .tiles = tiles };
-    }
-
-    pub fn getTile(self: Map, x: u8, y: u8) Terrain {
-        return self.tiles[x * self.width + y];
-    }
-};
-
-pub fn printMap(map: Map) void {
-    for (map.tiles, 0..) |tile, i| {
-        if (i % map.width == 0) {
-            std.debug.print("\n", .{});
-        }
-        switch (tile) {
-            .Road => std.debug.print("=", .{}),
-            .Plain => std.debug.print(".", .{}),
-            .Wood => std.debug.print("&", .{}),
-            .Mountain => std.debug.print("^", .{}),
-            .River => std.debug.print("'", .{}),
-            .Shoal => std.debug.print(",", .{}),
-            .Sea => std.debug.print("\"", .{}),
-            .Reef => std.debug.print(";", .{}),
-            .Pipe => std.debug.print("|", .{}),
-            .MissileSilo => std.debug.print("`", .{}),
-            .HQ => std.debug.print("h", .{}),
-            .City => std.debug.print("c", .{}),
-            .Base => std.debug.print("b", .{}),
-            .Airport => std.debug.print("a", .{}),
-            .Port => std.debug.print("p", .{}),
-            .CommTower => std.debug.print("t", .{}),
-            .Lab => std.debug.print("l", .{}),
-        }
-    }
-}
-
-test "printing map" {
-    var tiles = [_]Terrain{
-        .Plain, .Plain, .Plain,
-        .Road,  .Wood,  .Road,
-        .Plain, .Plain, .Plain,
-    };
-
-    const map = Map.init(3, 3, &tiles);
-    printMap(map);
 }
