@@ -43,76 +43,76 @@ pub const Terrain = enum {
 };
 
 const illegalMovementTable = init_illegal_movement_table: {
-    const table = std.EnumArray(MovementType, std.EnumArray(Terrain, bool)).init(bool, false);
+    var table = std.EnumArray(MovementType, std.EnumArray(Terrain, bool)).init(bool, false);
     // infantry stuff
-    table[MovementType.Foot][Terrain.Sea] = true;
-    table[MovementType.Foot][Terrain.Reef] = true;
-    table[MovementType.Foot][Terrain.Pipe] = true;
-    table[MovementType.Mech][Terrain.Sea] = true;
-    table[MovementType.Mech][Terrain.Reef] = true;
-    table[MovementType.Mech][Terrain.Pipe] = true;
+    table.getPtr(MovementType.Foot).set(Terrain.Sea, true);
+    table.getPtr(MovementType.Foot).set(Terrain.Reef, true);
+    table.getPtr(MovementType.Foot).set(Terrain.Pipe, true);
+    table.getPtr(MovementType.Mech).set(Terrain.Sea, true);
+    table.getPtr(MovementType.Mech).set(Terrain.Reef, true);
+    table.getPtr(MovementType.Mech).set(Terrain.Pipe, true);
 
     //vehicle stuff
-    table[MovementType.Tire][Terrain.Sea] = true;
-    table[MovementType.Tire][Terrain.Reef] = true;
-    table[MovementType.Tire][Terrain.Pipe] = true;
-    table[MovementType.Tire][Terrain.Mountain] = true;
-    table[MovementType.Tire][Terrain.River] = true;
-    table[MovementType.Tread][Terrain.Sea] = true;
-    table[MovementType.Tread][Terrain.Reef] = true;
-    table[MovementType.Tread][Terrain.Pipe] = true;
-    table[MovementType.Tread][Terrain.Mountain] = true;
-    table[MovementType.Tread][Terrain.River] = true;
+    table.getPtr(MovementType.Tire).set(Terrain.Sea, true);
+    table.getPtr(MovementType.Tire).set(Terrain.Reef, true);
+    table.getPtr(MovementType.Tire).set(Terrain.Pipe, true);
+    table.getPtr(MovementType.Tire).set(Terrain.Mountain, true);
+    table.getPtr(MovementType.Tire).set(Terrain.River, true);
+    table.getPtr(MovementType.Tread).set(Terrain.Sea, true);
+    table.getPtr(MovementType.Tread).set(Terrain.Reef, true);
+    table.getPtr(MovementType.Tread).set(Terrain.Pipe, true);
+    table.getPtr(MovementType.Tread).set(Terrain.Mountain, true);
+    table.getPtr(MovementType.Tread).set(Terrain.River, true);
 
     // sea stuff
-    table[MovementType.Ship][Terrain.Plain] = true;
-    table[MovementType.Ship][Terrain.Wood] = true;
-    table[MovementType.Ship][Terrain.Mountain] = true;
-    table[MovementType.Ship][Terrain.River] = true;
-    table[MovementType.Ship][Terrain.Road] = true;
-    table[MovementType.Ship][Terrain.Shoal] = true;
-    table[MovementType.Ship][Terrain.Pipe] = true;
-    table[MovementType.Ship][Terrain.HQ] = true;
-    table[MovementType.Ship][Terrain.City] = true;
-    table[MovementType.Ship][Terrain.Base] = true;
-    table[MovementType.Ship][Terrain.Airport] = true;
-    table[MovementType.Ship][Terrain.Lab] = true;
-    table[MovementType.Ship][Terrain.CommTower] = true;
-    table[MovementType.Ship][Terrain.MissileSilo] = true;
+    table.getPtr(MovementType.Ship).set(Terrain.Plain, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Wood, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Mountain, true);
+    table.getPtr(MovementType.Ship).set(Terrain.River, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Road, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Shoal, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Pipe, true);
+    table.getPtr(MovementType.Ship).set(Terrain.HQ, true);
+    table.getPtr(MovementType.Ship).set(Terrain.City, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Base, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Airport, true);
+    table.getPtr(MovementType.Ship).set(Terrain.Lab, true);
+    table.getPtr(MovementType.Ship).set(Terrain.CommTower, true);
+    table.getPtr(MovementType.Ship).set(Terrain.MissileSilo, true);
 
-    table[MovementType.Lander][Terrain.Plain] = true;
-    table[MovementType.Lander][Terrain.Wood] = true;
-    table[MovementType.Lander][Terrain.Mountain] = true;
-    table[MovementType.Lander][Terrain.River] = true;
-    table[MovementType.Lander][Terrain.Road] = true;
-    table[MovementType.Lander][Terrain.Pipe] = true;
-    table[MovementType.Lander][Terrain.HQ] = true;
-    table[MovementType.Lander][Terrain.City] = true;
-    table[MovementType.Lander][Terrain.Base] = true;
-    table[MovementType.Lander][Terrain.Airport] = true;
-    table[MovementType.Lander][Terrain.Lab] = true;
-    table[MovementType.Lander][Terrain.CommTower] = true;
-    table[MovementType.Lander][Terrain.MissileSilo] = true;
+    table.getPtr(MovementType.Lander).set(Terrain.Plain, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Wood, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Mountain, true);
+    table.getPtr(MovementType.Lander).set(Terrain.River, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Road, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Pipe, true);
+    table.getPtr(MovementType.Lander).set(Terrain.HQ, true);
+    table.getPtr(MovementType.Lander).set(Terrain.City, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Base, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Airport, true);
+    table.getPtr(MovementType.Lander).set(Terrain.Lab, true);
+    table.getPtr(MovementType.Lander).set(Terrain.CommTower, true);
+    table.getPtr(MovementType.Lander).set(Terrain.MissileSilo, true);
 
     // air stuff
-    table[MovementType.Air][Terrain.Pipe] = true;
+    table.getPtr(MovementType.Air).set(Terrain.Pipe, true);
 
     // pipe stuff
-    table[MovementType.Pipe][Terrain.Plain] = true;
-    table[MovementType.Pipe][Terrain.Wood] = true;
-    table[MovementType.Pipe][Terrain.Mountain] = true;
-    table[MovementType.Pipe][Terrain.River] = true;
-    table[MovementType.Pipe][Terrain.Road] = true;
-    table[MovementType.Pipe][Terrain.Sea] = true;
-    table[MovementType.Pipe][Terrain.Reef] = true;
-    table[MovementType.Pipe][Terrain.Shoal] = true;
-    table[MovementType.Pipe][Terrain.HQ] = true;
-    table[MovementType.Pipe][Terrain.City] = true;
-    table[MovementType.Pipe][Terrain.Airport] = true;
-    table[MovementType.Pipe][Terrain.Lab] = true;
-    table[MovementType.Pipe][Terrain.Port] = true;
-    table[MovementType.Pipe][Terrain.CommTower] = true;
-    table[MovementType.Pipe][Terrain.MissileSilo] = true;
+    table.getPtr(MovementType.Pipe).set(Terrain.Plain, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Wood, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Mountain, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.River, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Road, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Sea, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Reef, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Shoal, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.HQ, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.City, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Airport, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Lab, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.Port, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.CommTower, true);
+    table.getPtr(MovementType.Pipe).set(Terrain.MissileSilo, true);
 
     break :init_illegal_movement_table table;
 };
@@ -120,42 +120,42 @@ const illegalMovementTable = init_illegal_movement_table: {
 const movementCostTable = init_mvt_cost_table: {
     const table = std.EnumArray(MovementType, std.EnumArray(Terrain, u8)).init(u8, 9999);
     // infantry stuff
-    table[MovementType.Foot][Terrain.Plain] = 1;
-    table[MovementType.Foot][Terrain.Mountain] = 2;
-    table[MovementType.Foot][Terrain.Wood] = 1;
-    table[MovementType.Foot][Terrain.River] = 2;
-    table[MovementType.Foot][Terrain.Road] = 1;
-    table[MovementType.Foot][Terrain.Shoal] = 1;
-    table[MovementType.Foot][Terrain.MissileSilo] = 1;
+    table.getPtr(MovementType.Foot).set(Terrain.Plain, 1);
+    table.getPtr(MovementType.Foot).set(Terrain.Mountain, 2);
+    table.getPtr(MovementType.Foot).set(Terrain.Wood, 1);
+    table.getPtr(MovementType.Foot).set(Terrain.River, 2);
+    table.getPtr(MovementType.Foot).set(Terrain.Road, 1);
+    table.getPtr(MovementType.Foot).set(Terrain.Shoal, 1);
+    table.getPtr(MovementType.Foot).set(Terrain.MissileSilo, 1);
 
-    table[MovementType.Mech][Terrain.Plain] = 1;
-    table[MovementType.Mech][Terrain.Mountain] = 1;
-    table[MovementType.Mech][Terrain.Wood] = 1;
-    table[MovementType.Mech][Terrain.River] = 1;
-    table[MovementType.Mech][Terrain.Road] = 1;
-    table[MovementType.Mech][Terrain.Shoal] = 1;
-    table[MovementType.Mech][Terrain.MissileSilo] = 1;
+    table.getPtr(MovementType.Mech).set(Terrain.Plain, 1);
+    table.getPtr(MovementType.Mech).set(Terrain.Mountain, 1);
+    table.getPtr(MovementType.Mech).set(Terrain.Wood, 1);
+    table.getPtr(MovementType.Mech).set(Terrain.River, 1);
+    table.getPtr(MovementType.Mech).set(Terrain.Road, 1);
+    table.getPtr(MovementType.Mech).set(Terrain.Shoal, 1);
+    table.getPtr(MovementType.Mech).set(Terrain.MissileSilo, 1);
 
     // vehicle stuff
-    table[MovementType.Tire][Terrain.Plain] = 2;
-    table[MovementType.Tire][Terrain.Wood] = 3;
-    table[MovementType.Tire][Terrain.Road] = 1;
-    table[MovementType.Tire][Terrain.Shoal] = 1;
-    table[MovementType.Tire][Terrain.MissileSilo] = 1;
+    table.getPtr(MovementType.Tire).set(Terrain.Plain, 2);
+    table.getPtr(MovementType.Tire).set(Terrain.Wood, 3);
+    table.getPtr(MovementType.Tire).set(Terrain.Road, 1);
+    table.getPtr(MovementType.Tire).set(Terrain.Shoal, 1);
+    table.getPtr(MovementType.Tire).set(Terrain.MissileSilo, 1);
 
-    table[MovementType.Tread][Terrain.Plain] = 1;
-    table[MovementType.Tread][Terrain.Wood] = 2;
-    table[MovementType.Tread][Terrain.Road] = 1;
-    table[MovementType.Tread][Terrain.Shoal] = 1;
-    table[MovementType.Tread][Terrain.MissileSilo] = 1;
+    table.getPtr(MovementType.Tread).set(Terrain.Plain, 1);
+    table.getPtr(MovementType.Tread).set(Terrain.Wood, 2);
+    table.getPtr(MovementType.Tread).set(Terrain.Road, 1);
+    table.getPtr(MovementType.Tread).set(Terrain.Shoal, 1);
+    table.getPtr(MovementType.Tread).set(Terrain.MissileSilo, 1);
 
     // sea stuff
-    table[MovementType.Ship][Terrain.Sea] = 1;
-    table[MovementType.Ship][Terrain.Reef] = 2;
+    table.getPtr(MovementType.Ship).set(Terrain.Sea, 1);
+    table.getPtr(MovementType.Ship).set(Terrain.Reef, 2);
 
-    table[MovementType.Lander][Terrain.Sea] = 1;
-    table[MovementType.Lander][Terrain.Reef] = 2;
-    table[MovementType.Lander][Terrain.Shoal] = 1;
+    table.getPtr(MovementType.Lander).set(Terrain.Sea, 1);
+    table.getPtr(MovementType.Lander).set(Terrain.Reef, 2);
+    table.getPtr(MovementType.Lander).set(Terrain.Shoal, 1);
 
     // properties and pipes
     for (std.enums.values(MovementType)) |movementType| {
@@ -164,21 +164,21 @@ const movementCostTable = init_mvt_cost_table: {
         }
         for (std.enums.values(Terrain)) |terrain| {
             if (terrain.isProperty()) {
-                table[movementType][terrain] = 1;
+                table.getPtr(MovementType).set(Terrain, 1);
             }
         }
     }
-    table[MovementType.Ship][Terrain.Port] = 1;
-    table[MovementType.Lander][Terrain.Port] = 1;
-    table[MovementType.Pipe][Terrain.Pipe] = 1;
-    table[MovementType.Pipe][Terrain.Base] = 1;
+    table.getPtr(MovementType.Ship).set(Terrain.Port, 1);
+    table.getPtr(MovementType.Lander).set(Terrain.Port, 1);
+    table.getPtr(MovementType.Pipe).set(Terrain.Pipe, 1);
+    table.getPtr(MovementType.Pipe).set(Terrain.Base, 1);
     break :init_mvt_cost_table table;
 };
 
 pub fn getMovementCost(movementType: MovementType, terrain: Terrain) u8 {
-    return movementCostTable[movementType][terrain];
+    return movementCostTable.getPtr(movementType).get(terrain);
 }
 
 pub fn isLegalMovement(movementType: MovementType, terrain: Terrain) bool {
-    return !illegalMovementTable[movementType][terrain];
+    return !illegalMovementTable.getPtr(movementType).get(terrain);
 }
