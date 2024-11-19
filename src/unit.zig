@@ -111,8 +111,13 @@ pub const UnitType = enum {
         }
     }
 
-    pub fn getBaseDamage(attacker: UnitType, defender: UnitType) u8 {
+    pub fn getPrimaryWeaponBaseDamage(attacker: UnitType, defender: UnitType) u8 {
         const attackerRow = primaryWeaponBaseDamageTable.getPtrConst(attacker);
+        return attackerRow.*.get(defender);
+    }
+
+    pub fn getSecondaryWeaponBaseDamage(attacker: UnitType, defender: UnitType) u8 {
+        const attackerRow = secondaryWeaponBaseDamageTable.getPtrConst(attacker);
         return attackerRow.*.get(defender);
     }
 };
@@ -155,20 +160,23 @@ fn gen_base_damage_array(csvString: []const u8) EnumArray(UnitType, EnumArray(Un
     return table;
 }
 
-const init_base_damage = @embedFile("resources/attack-table.csv");
-const primaryWeaponBaseDamageTable = gen_base_damage_array(init_base_damage);
+const primary_base_damage = @embedFile("resources/primary-weapon-damage.csv");
+const secondary_base_damage = @embedFile("resources/secondary-weapon-damage.csv");
+const primaryWeaponBaseDamageTable = gen_base_damage_array(primary_base_damage);
+const secondaryWeaponBaseDamageTable = gen_base_damage_array(secondary_base_damage);
 
 pub const Unit = struct { id: u16, type: UnitType, health: u8, fuel: u8, ammo: u8 };
 
 test "print unit base attack table" {
     for (std.enums.values(UnitType)) |attacker| {
         for (std.enums.values(UnitType)) |defender| {
-            const baseDamage = UnitType.getBaseDamage(attacker, defender);
+            const primaryDamage = UnitType.getPrimaryWeaponBaseDamage(attacker, defender);
+            const secondaryDamage = UnitType.getSecondaryWeaponBaseDamage(attacker, defender);
             switch (attacker) {
-                .APC, .Lander, .TransportCopter, .BlackBoat => assert(baseDamage == 0),
+                .APC, .Lander, .TransportCopter, .BlackBoat => assert(primaryDamage == 0 and secondaryDamage == 0),
                 else => {},
             }
-            std.debug.print("{s}\t{s}\t{d}\n", .{ @tagName(attacker), @tagName(defender), baseDamage });
+            std.debug.print("{s}\t{s}\t{d}\t{d}\n", .{ @tagName(attacker), @tagName(defender), primaryDamage, secondaryDamage });
         }
     }
 }
